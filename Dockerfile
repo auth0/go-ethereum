@@ -1,9 +1,9 @@
 FROM ubuntu:xenial
 WORKDIR /root/
 RUN apt-get update && apt-get install -y git build-essential libgmp3-dev golang
-RUN echo force update to 1.4.7 first go
+RUN echo force update to 1.5.9 first go
 RUN git clone https://github.com/ethereum/go-ethereum
-RUN (cd go-ethereum && git reset --hard v1.4.18)
+RUN (cd go-ethereum && git reset --hard v1.5.9)
 RUN (cd go-ethereum && make geth)
 RUN mkdir ~/.ethash
 RUN ./go-ethereum/build/bin/geth makedag 0 ~/.ethash
