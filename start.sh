@@ -1,12 +1,4 @@
 #!/bin/bash
 set -vx
-echo gft > password
-/root/go-ethereum/build/bin/geth init genesis_block.json
-/root/go-ethereum/build/bin/geth --password password account new
-#Building static_nodes.json from the ips/ids
-
-NODE_KEY_HEX=`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 64`
-
-
-
-/root/go-ethereum/build/bin/geth --fakepow --forcejit --lightkdf --password password --rpccorsdomain "*" --cache=4096 --jitcache "64" --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --rpcaddr 0.0.0.0 --unlock 0 --nodiscover --nodekeyhex $NODE_KEY_HEX --fast --port 30303 --networkid 1123 --rpc --rpcport 8545 --verbosity 1 --maxpeers 200 js mining_script.js
+/root/go-ethereum/build/bin/geth --testnet removedb
+/root/go-ethereum/build/bin/geth --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --nodiscover --fast --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --testnet --bootnodes "enode://20c9ad97c081d63397d7b685a412227a40e23c8bdc6688c6f37e97cfbc22d2b4d1db1510d8f61e6a8866ad7f0e17c02b14182d37ea7c3c8b9c2683aeb6b733a1@52.169.14.227:30303,enode://6ce05930c72abc632c58e2e4324f7c7ea478cec0ed4fa2528982cf34483094e9cbc9216e7aa349691242576d552a2a56aaeae426c5303ded677ce455ba1acd9d@13.84.180.240:30303"
