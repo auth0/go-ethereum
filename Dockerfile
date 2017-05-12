@@ -14,7 +14,6 @@ RUN chmod +x /start.sh
 RUN tr -d '\r' < /start.sh > /start2.sh
 RUN rm /start.sh
 RUN mv /start2.sh /start.sh
-ADD mining_script.js mining_script.js
 RUN curl https://www.rinkeby.io/rinkeby.json > genesis_block.json
 EXPOSE 8545
 EXPOSE 30303
